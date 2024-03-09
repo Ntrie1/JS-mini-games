@@ -71,26 +71,26 @@ const result = document.querySelector('#result')
 let cardsChosen = [];
 let cardsChosenIds = [];
 const cardsWon = [];
- 
 
-function createBroad () {
-    cardsArray.forEach((cardEl, i) => {    
-    const card = document.createElement('img')
-    card.setAttribute('src', 'images/blank.png')
-    card.setAttribute('data-id', i)
-    card.addEventListener('click', flipCard)
-    grid.append(card)
+
+function createBroad() {
+    cardsArray.forEach((cardEl, i) => {
+        const card = document.createElement('img')
+        card.setAttribute('src', 'images/blank.png')
+        card.setAttribute('data-id', i)
+        card.addEventListener('click', flipCard)
+        grid.append(card)
     })
 
 }
 createBroad();
 
-function checkMatch () {
+function checkMatch() {
     const cards = document.querySelectorAll('#grid img');
     const optionOneId = cardsChosenIds[0];
     const optionTwoId = cardsChosenIds[1];
 
-    if (optionOneId == optionTwoId){
+    if (optionOneId == optionTwoId) {
         cards[optionOneId].setAttribute('src', 'images/blank.png');
         cards[optionTwoId].setAttribute('src', 'images/blank.png');
         alert('You have clicked the same image!');
@@ -114,7 +114,7 @@ function checkMatch () {
     cardsChosen = [];
     cardsChosenIds = [];
 
-    if (cardsWon.length == cardsArray.length / 2){
+    if (cardsWon.length == cardsArray.length / 2) {
         result.textContent = 'Congrats! You nailed it'
     }
 
@@ -128,7 +128,6 @@ function flipCard(e) {
     if (cardsChosen.length == 2) {
         setTimeout(checkMatch, 500);
     }
-    
+
 }
 
- 
