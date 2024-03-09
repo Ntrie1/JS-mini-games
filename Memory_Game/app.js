@@ -71,7 +71,7 @@ const result = document.querySelector('#result')
 let cardsChosen = [];
 let cardsChosenIds = [];
 const cardsWon = [];
-
+ 
 
 function createBroad () {
     cardsArray.forEach((cardEl, i) => {    
