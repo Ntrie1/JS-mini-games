@@ -5,6 +5,7 @@ const score = document.querySelector('#score');
 
 let result = 0;
 let hitPosition;
+let currentTime = 60;
 
 function randomSquare() {
     squares.forEach(square => {
@@ -15,18 +16,18 @@ function randomSquare() {
     let randomSquare = squares[indexRandom];
 
     randomSquare.classList.add('mole')
-   
+
     hitPosition = randomSquare.id
 }
 
 
 squares.forEach(square => {
     square.addEventListener('mousedown', () => {
-         if (hitPosition == square.id) {
-            result ++;
+        if (hitPosition == square.id) {
+            result++;
             score.textContent = result;
             hitPosition = null;
-         }
+        }
     });
 });
 
@@ -36,4 +37,18 @@ function moveMole() {
 }
 
 moveMole();
+
+function countDown() {
+    currentTime--;
+    timeLeft.textContent = currentTime;
+
+    if (currentTime == 0) {
+        clearInterval(countDownTimerId)
+        alert(`Game over! Your final socre is ${result}`)
+        result = 0;
+        score.textContent = result;
+    }
+}
+
+let countDownTimerId = setInterval(countDown, 1000)
 
