@@ -1,4 +1,5 @@
 const grid = document.querySelector('.grid');
+const scoreDisplay = document.querySelector('#score')
 
 const blockWidth = 100;
 const blockHeight = 20;
@@ -8,6 +9,7 @@ const boardHeight = 300;
 let timeId;
 let xDirection = 2;
 let yDirection = 2;
+let score = 0;
 
 const userStart = [230, 10];
 let currentPosition = userStart;
@@ -113,28 +115,53 @@ function moveBall() {
 timeId = setInterval(moveBall, 30);
 
 function checkForCollisions() {
-    if(
-    currentBallPosition[0] >= (boardWith - ballDiameter) || 
-    currentBallPosition[1] >= (boardHeight - ballDiameter)){
+    blocks.forEach((block, i) => {
+        if (
+            (currentBallPosition[0] > block.bottomLeft[0] && currentBallPosition[0] < block.bottomRight[0]) &&
+            ((currentBallPosition[1] + ballDiameter) > block.bottomLeft[1] && currentBallPosition[1] < block.topLeft[1])
+        ) {
+            const allBlocks = Array.from(document.querySelectorAll('.block'))
+            allBlocks[i].classList.remove('block')
+            blocks.splice(i, 1);
+            changeDirection();
+            score++;
+            scoreDisplay.textContent = score;
+        }
+     
+    })
+
+
+
+    if (
+        currentBallPosition[0] >= (boardWith - ballDiameter) ||
+        currentBallPosition[1] >= (boardHeight - ballDiameter) ||
+        currentBallPosition[0] <= 0
+    ) {
         changeDirection();
+    }
+
+    if (currentBallPosition[1] <= 0) {
+        clearInterval(timeId);
+        scoreDisplay.textContent = 'You lost!';
+        document.removeEventListener('keydown', moveUser);
     }
 }
 
 function changeDirection() {
     if (xDirection === 2 && yDirection === 2) {
-      yDirection = -2;
-      return;
+        yDirection = -2;
+        return;
     }
     if (xDirection === 2 && yDirection === -2) {
-      xDirection = -2;
-      return;
+        xDirection = -2;
+        return;
     }
     if (xDirection === -2 && yDirection === -2) {
-      yDirection = 2;
-      return;
+        yDirection = 2;
+        return;
     }
     if (xDirection === -2 && yDirection === 2) {
-      xDirection = 2;
-      return;
+        xDirection = 2;
+        return;
     }
-  }
+}
