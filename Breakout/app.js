@@ -127,11 +127,20 @@ function checkForCollisions() {
             score++;
             scoreDisplay.textContent = score;
         }
-     
+
     })
 
+    //check user collison 
+    if
+        (
+        (currentBallPosition[0] > currentPosition[0] && currentBallPosition[0] < currentPosition[0] + blockWidth) &&
+        (currentBallPosition[1] > currentPosition[1] && currentBallPosition[1] < currentPosition[1] + blockHeight)
+    ) {
+        changeDirection();
+    }
 
 
+    // check block collision
     if (
         currentBallPosition[0] >= (boardWith - ballDiameter) ||
         currentBallPosition[1] >= (boardHeight - ballDiameter) ||
@@ -140,6 +149,8 @@ function checkForCollisions() {
         changeDirection();
     }
 
+
+    // check for game over 
     if (currentBallPosition[1] <= 0) {
         clearInterval(timeId);
         scoreDisplay.textContent = 'You lost!';
