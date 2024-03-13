@@ -2,10 +2,18 @@ const grid = document.querySelector('.grid');
 
 const blockWidth = 100;
 const blockHeight = 20;
+const ballDiameter = 20;
 const boardWith = 560;
+const boardHeight = 300;
+let timeId;
+let xDirection = 2;
+let yDirection = 2;
 
 const userStart = [230, 10];
 let currentPosition = userStart;
+
+const ballStart = [270, 40];
+let currentBallPosition = ballStart;
 
 class Block {
     constructor(xAxis, yAxis) {
@@ -63,6 +71,11 @@ function userDraw() {
     user.style.bottom = currentPosition[1] + 'px';
 }
 
+function ballDraw() {
+    ball.style.left = currentBallPosition[0] + 'px';
+    ball.style.bottom = currentBallPosition[1] + 'px';
+}
+
 
 function moveUser(e) {
     switch (e.key) {
@@ -87,4 +100,41 @@ document.addEventListener('keydown', moveUser);
 
 const ball = document.createElement('div');
 ball.classList.add('ball');
+ballDraw();
 grid.appendChild(ball);
+
+function moveBall() {
+    currentBallPosition[0] += xDirection;
+    currentBallPosition[1] += yDirection;
+    ballDraw();
+    checkForCollisions();
+}
+
+timeId = setInterval(moveBall, 30);
+
+function checkForCollisions() {
+    if(
+    currentBallPosition[0] >= (boardWith - ballDiameter) || 
+    currentBallPosition[1] >= (boardHeight - ballDiameter)){
+        changeDirection();
+    }
+}
+
+function changeDirection() {
+    if (xDirection === 2 && yDirection === 2) {
+      yDirection = -2;
+      return;
+    }
+    if (xDirection === 2 && yDirection === -2) {
+      xDirection = -2;
+      return;
+    }
+    if (xDirection === -2 && yDirection === -2) {
+      yDirection = 2;
+      return;
+    }
+    if (xDirection === -2 && yDirection === 2) {
+      xDirection = 2;
+      return;
+    }
+  }
