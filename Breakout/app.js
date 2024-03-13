@@ -126,6 +126,11 @@ function checkForCollisions() {
             changeDirection();
             score++;
             scoreDisplay.textContent = score;
+            if (blocks.length == 0) {
+                scoreDisplay.textContent = 'You Win!'
+                clearInterval(timeId)
+                document.removeEventListener('keydown', moveUser)
+              }
         }
 
     })
