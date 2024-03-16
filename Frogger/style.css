@@ -15,28 +15,35 @@
     background-color: red;
 }
 
-.starting-block{
+.starting-block {
     background-color: black;
 }
 
-.log-left, 
-.log-right{
-background-color: lightblue;
-}
-
-.car-left,
-.car-right {
-    background-color: gray;
+.log-left,
+.log-right {
+    background-color: lightblue;
 }
 
 .frog {
     background-color: green;
 }
 
-.l1, .l2, .l3 {
-    background-color:  brown;
+.l1,
+.l2,
+.l3 {
+    background-color: brown;
 }
 
-.l4, .l5{
+.l4,
+.l5 {
     background-color: lightblue;
+}
+
+.c1 {
+    background-color: black;
+}
+
+.c2,
+.c3 {
+    background-color: lightgrey;
 }
