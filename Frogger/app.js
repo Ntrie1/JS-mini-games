@@ -10,22 +10,22 @@ function moveFrog(e) {
 
     switch (e.key) {
         case 'ArrowLeft':
-            if(currentIndex % width !== 0) currentIndex --;
+            if (currentIndex % width !== 0) currentIndex--;
             break;
         case 'ArrowUp':
-            if(currentIndex - width >= 0 ) currentIndex -= width;
+            if (currentIndex - width >= 0) currentIndex -= width;
             break;
         case 'ArrowRight':
-            if(currentIndex % width < width - 1) currentIndex ++;
+            if (currentIndex % width < width - 1) currentIndex++;
             break;
         case 'ArrowDown':
-            if(currentIndex + width < width * width) currentIndex += width;
+            if (currentIndex + width < width * width) currentIndex += width;
             break;
     }
 
     squares[currentIndex].classList.add('frog');
 
-    
+
 
 }
 document.addEventListener('keyup', moveFrog);
