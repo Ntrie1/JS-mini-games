@@ -10,6 +10,8 @@ const carsRight = document.querySelectorAll('.car-right');
 let currentIndex = 76
 const width = 9;
 let timerid;
+let currentTime = 16;
+let outcomeTimerId;
 
 function moveFrog(e) {
     squares[currentIndex].classList.remove('frog');
@@ -32,13 +34,17 @@ function moveFrog(e) {
     squares[currentIndex].classList.add('frog');
 }
 
-document.addEventListener('keyup', moveFrog);
 
 function autoMoveElements() {
+    currentTime--;
+    timeLeftDisplay.textContent = currentTime;
     logsLeft.forEach((log) => moveLogsLeft(log));
     logsRight.forEach((log) => moveLogsRight(log));
     carsLeft.forEach((car) => moveCarLeft(car));
     carsRight.forEach((car) => moveCarRight(car));
+}
+
+function checkOutcomes(){
     lose();
     win();
 }
@@ -133,12 +139,14 @@ function moveCarRight(carRight) {
 function lose() {
     if (squares[currentIndex].classList.contains('c1') ||
         squares[currentIndex].classList.contains('l4') ||
-        squares[currentIndex].classList.contains('l5')
+        squares[currentIndex].classList.contains('l5') ||
+        currentTime <= 0
     ) {
         resultDisplay.textContent = 'You lose...';
         clearInterval(timerid);
+        clearInterval(outcomeTimerId);
         squares[currentIndex].classList.remove('frog');
-        document.removeEventListener('keydown', moveFrog)
+        document.removeEventListener('keyup', moveFrog);
     }
 
 }
@@ -147,9 +155,21 @@ function win() {
     if (squares[currentIndex].classList.contains('ending-block')) {
         resultDisplay.textContent = 'You win!';
         clearInterval(timerid);
+        clearInterval(outcomeTimerId);
         document.removeEventListener('keydown', moveFrog)
     }
 }
 
-
-timerid = setInterval(autoMoveElements, 1000);
+startPauseButton.addEventListener('click', () => {
+    if (timerid) {
+        clearInterval(timerid);
+        clearInterval(outcomeTimerId);
+        document.removeEventListener('keyup', moveFrog);
+        timerid = null;
+        outcomeTimerId = null;
+    } else {
+        timerid = setInterval(autoMoveElements, 1000);
+        outcomeTimerId = setInterval(checkOutcomes, 10);
+        document.addEventListener('keyup', moveFrog);
+    }
+})
