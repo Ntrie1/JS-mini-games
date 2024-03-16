@@ -6,27 +6,26 @@ const squares = document.querySelectorAll('.grid div');
 let currentIndex = 76
 const width = 9;
 function moveFrog(e) {
+    squares[currentIndex].classList.remove('frog');
 
     switch (e.key) {
         case 'ArrowLeft':
-            console.log('left');
-            currentIndex --;
+            if(currentIndex % width !== 0) currentIndex --;
             break;
         case 'ArrowUp':
-            console.log('up');
-            currentIndex -= width;
+            if(currentIndex - width >= 0 ) currentIndex -= width;
             break;
         case 'ArrowRight':
-            console.log('r');
-            currentIndex ++;
+            if(currentIndex % width < width - 1) currentIndex ++;
             break;
         case 'ArrowDown':
-            console.log('down');
-            currentIndex += width;
+            if(currentIndex + width < width * width) currentIndex += width;
             break;
     }
 
     squares[currentIndex].classList.add('frog');
+
+    
 
 }
 document.addEventListener('keyup', moveFrog);
