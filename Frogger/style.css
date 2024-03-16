@@ -25,7 +25,7 @@
 }
 
 .frog {
-    background-color: green;
+    background-color: green !important
 }
 
 .l1,
