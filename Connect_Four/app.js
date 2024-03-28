@@ -89,7 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 square2.classList.contains('player-one') &&
                 square3.classList.contains('player-one') &&
                 square4.classList.contains('player-one')) {
-                result.innerHTML = 'Player One Wins!';
+                result.textContent = 'Player One Wins!';
+            }
+
+            if (square1.classList.contains('player-two') &&
+                square2.classList.contains('player-two') &&
+                square3.classList.contains('player-two') &&
+                square4.classList.contains('player-two')) {
+                result.textContent = 'Player Two Wins!';
+            }
+
+            {
+                result.textContent = 'Player Two Wins!'
             }
 
         })
