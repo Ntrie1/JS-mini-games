@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     squares.forEach((square, index) => {
         square.addEventListener('click', () => {
-            if (squares[index + 7].classList.contains('taken')) {
+            if (squares[index + 7] && squares[index + 7].classList.contains('taken') && !square.classList.contains('taken')) {
                 if (currentPlayer == 1) {
                     square.classList.add('taken');
                     square.classList.add('player-one')
