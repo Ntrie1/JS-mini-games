@@ -75,11 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
         [11, 18, 25, 32],
         [12, 19, 26, 33],
         [13, 20, 27, 34],
-      ]
+    ]
 
 
     function checkBoard() {
-
+        winningArrays.forEach(() => {
+            const square1 = squares[array[0]];
+            const square2 = squares[array[1]];
+            const square3 = squares[array[2]];
+            const square4 = squares[array[3]];
+        })
     }
 
     squares.forEach((square, index) => {
@@ -100,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-           else alert('U cannot go here')
-           checkBoard();
+            else alert('U cannot go here')
+            checkBoard();
         });
     })
 
