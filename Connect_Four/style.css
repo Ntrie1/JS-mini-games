@@ -10,5 +10,14 @@
 .grid div {
     height: 20px;
     width: 20px;
-    background-color: aqua;
+}
+
+.player-one {
+    background-color: red;
+    border-radius: 10px;
+}
+
+.player-two {
+    background-color: blue;
+    border-radius: 10px;
 }
