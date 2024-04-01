@@ -90,13 +90,32 @@ function moveInvadors() {
     }
 
 
-    alienInvaders.forEach((invader, i) =>{
-        if(alienInvaders[i] > squares.length){
+    alienInvaders.forEach((invader, i) => {
+        if (alienInvaders[i] > squares.length) {
             resultDisplay.textContent = 'game over';
             clearInterval(invaderId);
         }
-    }) 
+    })
 
 
 }
 invaderId = setInterval(moveInvadors, 50);
+
+
+function shoot(e) {
+    let laserId;
+    let currentLaserIndex = currentShooterIndex;
+    
+    function moveLaser(){
+        squares[currentLaserIndex].classList.remove('laser');
+        currentLaserIndex -= width;
+        squares[currentLaserIndex].classList.add('laser');
+    }
+
+    switch(e.key){
+        case 'ArrowUp':
+            laserId = setInterval(moveLaser, 100)
+    }
+}
+
+document.addEventListener('keydown', shoot)
