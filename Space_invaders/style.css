@@ -19,10 +19,14 @@
 
 
 .shooter {
-    background-color: red;
+    background-color: green;
     border-radius: 10px;
 }
 
 .laser {
     background-color: orange;
+}
+
+.boom {
+    background-color: red;
 }
