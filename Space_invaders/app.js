@@ -105,14 +105,14 @@ invaderId = setInterval(moveInvadors, 50);
 function shoot(e) {
     let laserId;
     let currentLaserIndex = currentShooterIndex;
-    
-    function moveLaser(){
+
+    function moveLaser() {
         squares[currentLaserIndex].classList.remove('laser');
         currentLaserIndex -= width;
         squares[currentLaserIndex].classList.add('laser');
     }
 
-    switch(e.key){
+    switch (e.key) {
         case 'ArrowUp':
             laserId = setInterval(moveLaser, 100)
     }
