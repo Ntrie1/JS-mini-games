@@ -98,8 +98,11 @@ function moveInvadors() {
             resultDisplay.textContent = 'game over';
             clearInterval(invaderId);
         }
-    })
+    });
 
+    if(alienRemoved.length == alienInvaders.length){
+        resultDisplay.textContent = 'You won!'
+    }
 
 }
 invaderId = setInterval(moveInvadors, 500);
