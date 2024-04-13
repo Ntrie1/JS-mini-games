@@ -1,6 +1,39 @@
+body {
+    background-image: url('./images/memgame.jpg');
+}
+
 #grid {
     width: 400px;
     height: 300px;
     display: flex;
     flex-wrap: wrap;
+    margin: auto;
+    position: relative;
+}
+
+h3 {
+    text-align: center;
+    font-family: fantasy;
+    font-size: 1.8rem;
+    letter-spacing: 5px;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.popup {
+    width: 300px;
+    height: 70px;
+    background-color: white;
+    opacity: 0.8;
+    position: absolute;
+    left: 40.5%;
+    top: 20%;
+    z-index: 2000;
+    border-radius: 10px;
+    border: 1px red solid;
+    
 }
