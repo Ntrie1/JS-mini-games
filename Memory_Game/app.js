@@ -67,7 +67,10 @@ const cardsArray = [
 cardsArray.sort(() => 0.5 - Math.random());
 
 const grid = document.querySelector('#grid');
-const result = document.querySelector('#result')
+const result = document.querySelector('#result');
+const popupTab = document.querySelector('.popup');
+const popupText = document.querySelector('.popup h2');
+
 let cardsChosen = [];
 let cardsChosenIds = [];
 const cardsWon = [];
@@ -98,7 +101,8 @@ function checkMatch() {
 
 
     if (cardsChosen[0] == cardsChosen[1]) {
-        alert('You found a match!')
+        showPopUp('You found a match!');
+        // alert('You found a match!')
         cards[optionOneId].setAttribute('src', 'images/white.png');
         cards[optionTwoId].setAttribute('src', 'images/white.png');
         cards[optionOneId].removeEventListener('click', flipCard);
@@ -107,7 +111,8 @@ function checkMatch() {
     } else {
         cards[optionOneId].setAttribute('src', 'images/blank.png');
         cards[optionTwoId].setAttribute('src', 'images/blank.png');
-        alert('Sorry try again!')
+       showPopUp('Sorry try again!');
+        // alert('Sorry try again!')
     }
 
     result.textContent = cardsWon.length
@@ -128,6 +133,14 @@ function flipCard(e) {
     if (cardsChosen.length == 2) {
         setTimeout(checkMatch, 500);
     }
+}
+
+function showPopUp(text) {
+    popupTab.style.display = 'block';
+    popupText.textContent = text;
+    setTimeout(() => {
+        popupTab.style.display = 'none';
+    }, 800);
 
 }
 
